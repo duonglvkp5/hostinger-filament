@@ -19,7 +19,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Navigation\NavigationItem;
 use Filament\Navigation\MenuItem;
-use Filament\SpotlightPlugin\SpotlightPlugin;
+use pxlrbt\FilamentSpotlight\SpotlightPlugin;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -49,9 +49,9 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-o-cog-6-tooth'),
                 'logout' => MenuItem::make()->label('Log Out')
             ])
-            // ->plugins([
-            //     SpotlightPlugin::make()
-            // ])
+            ->plugins([
+                SpotlightPlugin::make()
+            ])
             ->sidebarFullyCollapsibleOnDesktop()
             ->font('Poppins')
             ->favicon('images/favicon.png')

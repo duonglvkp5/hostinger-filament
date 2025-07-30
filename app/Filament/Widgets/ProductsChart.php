@@ -39,7 +39,7 @@ class ProductsChart extends ChartWidget
         $productsPerMonth = [];
         $months = collect(range(1,12))->map(function($month)use($now,$productsPerMonth){
             $count = Product::whereMonth('created_at', Carbon::parse($now->month($month)->format('Y-m')))->count();
-            $productsPerMonth = $count;
+            $productsPerMonth[] = $count;
 
             return $now->month($month)->format('M');
         })->toArray();
