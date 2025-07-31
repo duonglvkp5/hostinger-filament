@@ -84,6 +84,8 @@ class BrandResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->paginated([5, 10, 25])
+            ->defaultPaginationPageOption(5)
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()

@@ -21,9 +21,9 @@ class CustomerResource extends Resource
 
     protected static ?string $navigationLabel = 'Customer';
 
-    protected static ?string $navigationGroup = 'Shop';
-
     protected static ?int $navigationSort = 2;
+
+    protected static ?string $navigationGroup = 'Shop';
 
     public static function form(Form $form): Form
     {
@@ -41,7 +41,7 @@ class CustomerResource extends Resource
                             ->unique(ignoreRecord: true),
                         Forms\Components\TextInput::make('phone')
                             ->maxValue(50),
-                        Forms\Components\DatePicker::make('data_of_birth'),
+                        Forms\Components\DatePicker::make('date_of_birth'),
                         Forms\Components\TextInput::make('city')
                             ->required(),
                         Forms\Components\TextInput::make('zip_code')
@@ -56,6 +56,8 @@ class CustomerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->paginated([5, 10, 25])
+            ->defaultPaginationPageOption(5)
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()
@@ -69,9 +71,9 @@ class CustomerResource extends Resource
                 Tables\Columns\TextColumn::make('city')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('data_of_birth')
+                Tables\Columns\TextColumn::make('date_of_birth')
                     ->date()
-                    ->sortable()
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -92,6 +94,8 @@ class CustomerResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
+
+    
     
     public static function getRelations(): array
     {

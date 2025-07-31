@@ -154,10 +154,13 @@ class ProductResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->paginated([5, 10, 25])
+            ->defaultPaginationPageOption(5)
             ->columns([
                 // Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\ImageColumn::make('image')
-                    ->url(fn ($record) => Storage::url($record->image)),
+                    ->square() 
+                    ->rounded(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
