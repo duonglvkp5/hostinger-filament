@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\CategoryResource\RelationManagers;
 
+use App\Enums\ProductTypeEnum;
+use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -9,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class ProductsRelationManager extends RelationManager
 {
